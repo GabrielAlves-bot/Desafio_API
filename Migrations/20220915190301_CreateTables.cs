@@ -4,62 +4,62 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Desafio_API.Migrations.Atendimento
+namespace Desafio_API.Migrations
 {
-    public partial class CreateNewTable : Migration
+    public partial class CreateTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Espera",
+                name: "tb_espera",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TipoAtendimento = table.Column<int>(type: "integer", nullable: false),
-                    StatusPainel = table.Column<bool>(type: "boolean", nullable: false),
-                    DtEmissao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    tipo_atendimento = table.Column<int>(type: "integer", nullable: false),
+                    status_painel = table.Column<bool>(type: "boolean", nullable: false),
+                    data_emissao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Espera", x => x.ID);
+                    table.PrimaryKey("PK_tb_espera", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Atendimento",
+                name: "tb_atendimento",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Mesa = table.Column<int>(type: "integer", nullable: false),
-                    DtAtendimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    mesa = table.Column<int>(type: "integer", nullable: false),
+                    data_atendimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     IDEspera = table.Column<int>(type: "integer", nullable: false),
                     EsperaID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Atendimento", x => x.ID);
+                    table.PrimaryKey("PK_tb_atendimento", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Atendimento_Espera_EsperaID",
+                        name: "FK_tb_atendimento_tb_espera_EsperaID",
                         column: x => x.EsperaID,
-                        principalTable: "Espera",
-                        principalColumn: "ID",
+                        principalTable: "tb_espera",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Atendimento_EsperaID",
-                table: "Atendimento",
+                name: "IX_tb_atendimento_EsperaID",
+                table: "tb_atendimento",
                 column: "EsperaID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Atendimento");
+                name: "tb_atendimento");
 
             migrationBuilder.DropTable(
-                name: "Espera");
+                name: "tb_espera");
         }
     }
 }
