@@ -35,10 +35,7 @@ namespace Desafio_API.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("data_atendimento");
 
-                    b.Property<int>("EsperaID")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IDEspera")
+                    b.Property<int>("EsperaId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Mesa")
@@ -47,7 +44,7 @@ namespace Desafio_API.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("EsperaID");
+                    b.HasIndex("EsperaId");
 
                     b.ToTable("tb_atendimento", (string)null);
                 });
@@ -81,17 +78,12 @@ namespace Desafio_API.Migrations
             modelBuilder.Entity("Desafio_API.Model.Atendimento", b =>
                 {
                     b.HasOne("Desafio_API.Model.Espera", "Espera")
-                        .WithMany("Atendimentos")
-                        .HasForeignKey("EsperaID")
+                        .WithMany()
+                        .HasForeignKey("EsperaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Espera");
-                });
-
-            modelBuilder.Entity("Desafio_API.Model.Espera", b =>
-                {
-                    b.Navigation("Atendimentos");
                 });
 #pragma warning restore 612, 618
         }

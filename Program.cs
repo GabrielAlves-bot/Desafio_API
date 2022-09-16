@@ -1,4 +1,6 @@
 using Desafio_API.Data;
+using Desafio_API.Repository;
+using Desafio_API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,11 @@ builder.Services.AddDbContext<ApiContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
+
+builder.Services.AddScoped<IEsperaRepository, EsperaRepository>();
+builder.Services.AddScoped<IEsperaService, EsperaService>();
+builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
+builder.Services.AddScoped<IAtendimentoService, AtendimentoService>();
 
 var app = builder.Build();
 
