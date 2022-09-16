@@ -41,7 +41,7 @@ namespace Desafio_API.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Esperas");
+                    b.ToTable("Esperas", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -8,5 +8,6 @@ namespace Desafio_API.Repository
         public Task<Espera?> BuscarProximoNormal();
         public Task<Espera?> BuscarProximoPrioritario();
         public void MudarStatusPainel(Espera espera);
+        public Task<Espera?> BuscarProximoGenerico();
     }
 }

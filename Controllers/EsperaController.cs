@@ -19,6 +19,10 @@ namespace Desafio_API.Controllers
 
         public async Task<ActionResult> Post(EsperaDTO esperaDTO)
         {
+            if(esperaDTO.TipoAtendimento > 2 || esperaDTO.TipoAtendimento == 0)
+            {
+                return BadRequest("Ensira um valor válido!");  
+            }
             var esperaAtual = await _service.AdicionarEspera(esperaDTO);
                 return Ok(esperaAtual);
         }

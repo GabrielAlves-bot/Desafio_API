@@ -1,6 +1,7 @@
 ﻿using Desafio_API.DTO;
 using Desafio_API.Model;
 using Desafio_API.Repository;
+using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace Desafio_API.Services
 {
@@ -49,6 +50,12 @@ namespace Desafio_API.Services
             {
                 espera = await _eRepository.BuscarProximoNormal();
                 contador += 1;
+            }
+
+            if(espera == null)
+            {
+                espera = await _eRepository.BuscarProximoGenerico();
+
             }
 
             if(espera != null)

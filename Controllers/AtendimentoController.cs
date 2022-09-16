@@ -22,8 +22,15 @@ namespace Desafio_API.Controllers
         [HttpPost]
         public async Task<ActionResult> GerarAtendimento(AtendimentoDTO atendimentoDTO)
         {
-            var atendimento = await _service.IniciarAtendimento(atendimentoDTO);
-            return atendimento != null ? Ok(atendimento) : BadRequest("Não foi possível iniciar o atendimento.");
+            try
+            {
+                var atendimento = await _service.IniciarAtendimento(atendimentoDTO);
+                return Ok(atendimento);
+            }
+            catch
+            {
+                return BadRequest("Não foi possível iniciar o atendimento.");
+            }
         }
 
         [HttpGet]

@@ -22,6 +22,7 @@ builder.Services.AddDbContext<EsperaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
+
 builder.Services.AddScoped<IEsperaRepository, EsperaRepository>();
 builder.Services.AddScoped<IEsperaService, EsperaService>();
 builder.Services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();

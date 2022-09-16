@@ -10,6 +10,5 @@ namespace Desafio_API.Data
         }
 
         public DbSet<Espera> Esperas { get; set; }
-
     }
 }

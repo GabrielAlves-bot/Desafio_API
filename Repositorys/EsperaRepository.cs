@@ -19,6 +19,11 @@ namespace Desafio_API.Repository
             return espera;
         }
 
+        public async Task<Espera?> BuscarProximoGenerico()
+        {
+            return await _context.Esperas.Where(x => x.StatusPainel == false).OrderBy(x => x.DtEmissao).FirstOrDefaultAsync();
+        }
+
         public async Task<Espera?> BuscarProximoNormal()
         {
            return await _context.Esperas.Where(x => x.StatusPainel == false && x.TipoAtendimento == 1).OrderBy(x => x.DtEmissao).FirstOrDefaultAsync();
