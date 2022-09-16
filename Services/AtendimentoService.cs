@@ -40,22 +40,22 @@ namespace Desafio_API.Services
             Atendimento atendimento = new Atendimento();
             Espera espera = null;
 
-            if (contador < 3)
+            if (contador > 3)
             {
-                espera = await _eRepository.BuscarProximoNormal();
-                contador += 1;
+                espera = await _eRepository.BuscarProximoPrioritario();
+                contador = 1; 
             }
             else
             {
-                espera = await _eRepository.BuscarProximoPrioritario();
-                contador = 1;
+                espera = await _eRepository.BuscarProximoNormal();
+                contador += 1;
             }
 
             if(espera != null)
             {
                 atendimento.DtAtendimento = DateTime.UtcNow;
                 atendimento.Mesa = atendimentoDTO.Mesa;
-                atendimento.EsperaId = espera.ID;
+                atendimento.Espera = espera;
 
                 espera.StatusPainel = true;
                 _eRepository.MudarStatusPainel(espera);

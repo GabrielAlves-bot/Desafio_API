@@ -3,17 +3,19 @@ using System;
 using Desafio_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Desafio_API.Migrations
+namespace Desafio_API.Migrations.Atendimento
 {
-    [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AtendimentoContext))]
+    [Migration("20220916033939_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,53 +28,46 @@ namespace Desafio_API.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<DateTime>("DtAtendimento")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("data_atendimento");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("EsperaId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Mesa")
-                        .HasColumnType("integer")
-                        .HasColumnName("mesa");
+                        .HasColumnType("integer");
 
                     b.HasKey("ID");
 
                     b.HasIndex("EsperaId");
 
-                    b.ToTable("tb_atendimento", (string)null);
+                    b.ToTable("Atendimento");
                 });
 
             modelBuilder.Entity("Desafio_API.Model.Espera", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<DateTime>("DtEmissao")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("data_emissao");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("StatusPainel")
-                        .HasColumnType("boolean")
-                        .HasColumnName("status_painel");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("TipoAtendimento")
-                        .HasColumnType("integer")
-                        .HasColumnName("tipo_atendimento");
+                        .HasColumnType("integer");
 
                     b.HasKey("ID");
 
-                    b.ToTable("tb_espera", (string)null);
+                    b.ToTable("Espera");
                 });
 
             modelBuilder.Entity("Desafio_API.Model.Atendimento", b =>

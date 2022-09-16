@@ -7,9 +7,9 @@ namespace Desafio_API.Repository
 {
     public class AtendimentoRepository : IAtendimentoRepository
     {
-        private readonly ApiContext _context;
+        private readonly AtendimentoContext _context;
 
-        public AtendimentoRepository(ApiContext context)
+        public AtendimentoRepository(AtendimentoContext context)
         {
             _context = context;
         }

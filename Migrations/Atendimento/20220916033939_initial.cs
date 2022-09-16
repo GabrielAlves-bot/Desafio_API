@@ -4,61 +4,61 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Desafio_API.Migrations
+namespace Desafio_API.Migrations.Atendimento
 {
     public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "tb_espera",
+                name: "Espera",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    tipo_atendimento = table.Column<int>(type: "integer", nullable: false),
-                    status_painel = table.Column<bool>(type: "boolean", nullable: false),
-                    data_emissao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    TipoAtendimento = table.Column<int>(type: "integer", nullable: false),
+                    StatusPainel = table.Column<bool>(type: "boolean", nullable: false),
+                    DtEmissao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_espera", x => x.id);
+                    table.PrimaryKey("PK_Espera", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_atendimento",
+                name: "Atendimento",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    mesa = table.Column<int>(type: "integer", nullable: false),
-                    data_atendimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Mesa = table.Column<int>(type: "integer", nullable: false),
+                    DtAtendimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     EsperaId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_atendimento", x => x.id);
+                    table.PrimaryKey("PK_Atendimento", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_tb_atendimento_tb_espera_EsperaId",
+                        name: "FK_Atendimento_Espera_EsperaId",
                         column: x => x.EsperaId,
-                        principalTable: "tb_espera",
-                        principalColumn: "id",
+                        principalTable: "Espera",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_atendimento_EsperaId",
-                table: "tb_atendimento",
+                name: "IX_Atendimento_EsperaId",
+                table: "Atendimento",
                 column: "EsperaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_atendimento");
+                name: "Atendimento");
 
             migrationBuilder.DropTable(
-                name: "tb_espera");
+                name: "Espera");
         }
     }
 }
