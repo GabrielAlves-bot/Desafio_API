@@ -19,8 +19,14 @@ namespace Desafio_API.Controllers
             _service = service;
         }
 
+
+        /// <summary>
+        /// Criar Um Novo Atendimento.
+        /// </summary>
+        /// <returns>Um Novo Atendimento</returns>
+        /// <response code="200">Returna a criação de um atendimento.</response>
         [HttpPost]
-        public async Task<ActionResult> GerarAtendimento(AtendimentoDTO atendimentoDTO)
+        public async Task<ActionResult> CriarAtendimento(AtendimentoDTO atendimentoDTO)
         {
             try
             {
@@ -33,11 +39,23 @@ namespace Desafio_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Gerar Relatório De Atendimentos.
+        /// </summary>
+        /// <returns>Um Relatório</returns>
+        /// <response code="200">Returna uma relatório </response>
         [HttpGet]
-        public async Task<ActionResult> buscarAtendimentosComTempo()
+        public async Task<ActionResult> GerarRelatorioDeAtendimentos()
         {
+            try
+            { 
            var atendimentos = await _service.buscarAtendimentosComTempo();
            return Ok(atendimentos);
+            }
+            catch
+            {
+                return BadRequest("Não foi possível listar os atendimentos");
+            }
         }
     }
 }

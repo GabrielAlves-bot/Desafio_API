@@ -82,8 +82,7 @@ namespace Desafio_API.Services
             atendimentoComTempo.EsperaId = atendimento.EsperaId;
             atendimentoComTempo.Espera = atendimento.Espera;
             atendimentoComTempo.DtAtendimento = atendimento.DtAtendimento;
-            atendimentoComTempo.tempoGasto = ((int)tempoGasto.TotalMinutes) + " minutos.";
-
+            atendimentoComTempo.tempoGasto = ((int)tempoGasto.TotalMinutes) + " Minutos";
             return atendimentoComTempo;
         }
     }

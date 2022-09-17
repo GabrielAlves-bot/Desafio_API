@@ -15,9 +15,14 @@ namespace Desafio_API.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Criar Uma Nova Espera.
+        /// </summary>
+        /// <returns>Nova Espera</returns>
+        /// <response code="200">Uma Nova Espera Gerada </response>
         [HttpPost]
 
-        public async Task<ActionResult> Post(EsperaDTO esperaDTO)
+        public async Task<ActionResult> CriarUmaNovaEspera(EsperaDTO esperaDTO)
         {
             if(esperaDTO.TipoAtendimento > 2 || esperaDTO.TipoAtendimento == 0)
             {

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Desafio-API</name>
+    </assembly>
+    <members>
+        <member name="M:Desafio_API.Controllers.AtendimentoController.CriarAtendimento(Desafio_API.DTO.AtendimentoDTO)">
+            <summary>
+            Criar Um Novo Atendimento.
+            </summary>
+            <returns>Um Novo Atendimento</returns>
+            <response code="200">Returna a criação de um atendimento.</response>
+        </member>
+        <member name="M:Desafio_API.Controllers.AtendimentoController.GerarRelatorioDeAtendimentos">
+            <summary>
+            Gerar Relatório De Atendimentos.
+            </summary>
+            <returns>Um Relatório</returns>
+            <response code="200">Returna uma relatório </response>
+        </member>
+        <member name="M:Desafio_API.Controllers.EsperaController.CriarUmaNovaEspera(Desafio_API.DTO.EsperaDTO)">
+            <summary>
+            Criar Uma Nova Espera.
+            </summary>
+            <returns>Nova Espera</returns>
+            <response code="200">Uma Nova Espera Gerada </response>
+        </member>
+    </members>
+</doc>
