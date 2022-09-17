@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Desafio_API.Migrations.Atendimento
+namespace Desafio_API.Migrations
 {
-    [DbContext(typeof(AtendimentoContext))]
-    [Migration("20220916161803_CreateTableEspera")]
+    [DbContext(typeof(EsperaContext))]
+    [Migration("20220917025235_CreateTableEspera")]
     partial class CreateTableEspera
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,30 +23,6 @@ namespace Desafio_API.Migrations.Atendimento
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("Desafio_API.Model.Atendimento", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
-
-                    b.Property<DateTime>("DtAtendimento")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("EsperaId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Mesa")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("EsperaId");
-
-                    b.ToTable("Atendimento");
-                });
 
             modelBuilder.Entity("Desafio_API.Model.Espera", b =>
                 {
@@ -67,18 +43,7 @@ namespace Desafio_API.Migrations.Atendimento
 
                     b.HasKey("ID");
 
-                    b.ToTable("Espera");
-                });
-
-            modelBuilder.Entity("Desafio_API.Model.Atendimento", b =>
-                {
-                    b.HasOne("Desafio_API.Model.Espera", "Espera")
-                        .WithMany()
-                        .HasForeignKey("EsperaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Espera");
+                    b.ToTable("Esperas");
                 });
 #pragma warning restore 612, 618
         }

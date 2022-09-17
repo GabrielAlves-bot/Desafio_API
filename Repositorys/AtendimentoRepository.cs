@@ -22,7 +22,7 @@ namespace Desafio_API.Repository
 
         public async Task<List<Atendimento>> BuscarAtendimentos()
         {
-            return await _context.Atendimento.Include(x => x.Espera).ToListAsync();
+            return await _context.Atendimento.AsNoTracking().Include(x => x.Espera).ToListAsync();
         }
 
     }

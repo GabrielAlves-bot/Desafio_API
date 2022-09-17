@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Desafio_API.Migrations.Atendimento
 {
-    public partial class CreateTableEspera : Migration
+    public partial class CreateTableAtendimento : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
